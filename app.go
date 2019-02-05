@@ -16,14 +16,12 @@ var dao = APIDao{}
 
 // AllCustomersEndpoint Get all customers
 func AllCustomersEndpoint(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("allcustomersendpoint 1")
 	customers, err := dao.FindAllCustomers()
 
 	if err != nil {
 		respondWithError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
-	fmt.Println(customers)
 	respondWithJson(w, http.StatusOK, customers)
 }
 
@@ -110,7 +108,6 @@ func init() {
 	dao.Server = config.Server
 	dao.Database = config.Database
 	dao.Connect()
-	fmt.Println("init")
 }
 
 func main() {
